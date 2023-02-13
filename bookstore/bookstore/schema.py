@@ -1,8 +1,8 @@
 import graphene
-import bookstore.books.schema
+import books.schema
 
 
-class Query(bookstore.books.schema.Query, graphene.ObjectType):
+class Query(books.schema.Query, graphene.ObjectType):
     pass
 
 
