@@ -16,6 +16,7 @@ class Book(models.Model):
     book_size_id = models.ForeignKey(
         BookSize,
         related_name="book_size_id",
+        on_delete=models.CASCADE,
     )
 
 
