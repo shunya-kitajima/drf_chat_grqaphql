@@ -11,3 +11,9 @@ class AuthorType(graphene.ObjectType):
     class Meta:
         model = Author
 
+
+class Query:
+    books = graphene.List(graphene.NonNull(BookType), description="書籍取得API")
+
+    def resolve_books(self, info):
+        return Book.objects.all()
