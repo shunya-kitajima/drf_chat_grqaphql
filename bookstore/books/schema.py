@@ -23,7 +23,6 @@ class NewBookInput(graphene.InputObjectType):
     title = graphene.String(required=True)
     price = graphene.Int(required=True)
     book_size_id = graphene.UUID(required=True)
-    author_id = graphene.UUID(required=True)
 
 
 class CreateBookMutation(graphene.Mutation):
