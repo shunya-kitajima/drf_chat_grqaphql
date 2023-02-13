@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "graphene_django",
     "books",
+    "graphene_subscriptions",
 ]
 
 MIDDLEWARE = [
@@ -85,6 +86,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 GRAPHENE = {
     "SCHEMA": "bookstore.schema.schema",
+}
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    }
 }
 
 # Internationalization
