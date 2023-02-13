@@ -1,13 +1,20 @@
 import graphene
+from graphene import relay
+from graphene_django import DjangoObjectType
 from .models import Book, Author
 
 
-class BookType(graphene.ObjectType):
+class BookType(DjangoObjectType):
     class Meta:
         model = Book
+        filter_fields = {
+            "title": ["exact", "icontains"],
+        }
+
+    interfaces = (relay.Node,)
 
 
-class AuthorType(graphene.ObjectType):
+class AuthorType(DjangoObjectType):
     class Meta:
         model = Author
 
