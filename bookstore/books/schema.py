@@ -1,6 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
 from .models import Book, Author
+from .forms import CreateBookForm
 
 
 class BookType(DjangoObjectType):
@@ -29,3 +30,12 @@ class Query:
         if title:
             qs = qs.filter(title__contains=title)
         return qs
+
+
+class CreateBookMutation(DjangoModelFormMutatiom):
+    class Meta:
+        form_class = CreateBookForm
+
+
+class Mutation(graphene.ObjectType):
+    create_book = CreateBookMutation.Field()
