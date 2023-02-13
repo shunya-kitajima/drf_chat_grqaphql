@@ -11,10 +11,21 @@ class BookType(DjangoObjectType):
 class AuthorType(DjangoObjectType):
     class Meta:
         model = Author
+    full_name = graphene.String()
+
+    def resolve_authors(self: Author, info):
+        return f"{self.last_name} {self.first_name}"
 
 
 class Query:
-    books = graphene.List(graphene.NonNull(BookType), description="書籍取得API")
+    books = graphene.List(
+        graphene.NonNull(BookType),
+        title=graphene.String(required=False),
+        description="書籍取得API",
+    )
 
-    def resolve_books(self, info):
-        return Book.objects.all()
+    def resolve_books(self, info, title: str = ""):
+        qs = Book.objects.all()
+        if title:
+            qs = qs.filter(title__contains=title)
+        return qs
