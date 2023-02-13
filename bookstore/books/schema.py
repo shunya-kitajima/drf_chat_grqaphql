@@ -1,5 +1,6 @@
 import graphene
 from graphene_django import DjangoObjectType
+from graphene_django.forms.mutation import DjangoModelFormMutation
 from .models import Book, Author
 from .forms import CreateBookForm
 
@@ -32,7 +33,7 @@ class Query:
         return qs
 
 
-class CreateBookMutation(DjangoModelFormMutatiom):
+class CreateBookMutation(DjangoModelFormMutation):
     class Meta:
         form_class = CreateBookForm
 
